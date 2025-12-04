@@ -1,0 +1,442 @@
+.page {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.profileImage {
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--card-border);
+}
+
+.heroInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.classNames {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.03em;
+}
+
+.verifiedIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.spotifyWrapper {
+  margin-top: 0.75rem;
+}
+
+/* Info Section */
+.infoSection {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 2rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+
+.infoItemWide {
+  grid-column: span 2;
+}
+
+.infoIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(23, 23, 23, 0.04);
+  border: 1px solid white;
+  box-shadow: 0 0 0 1px var(--card-border);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.infoIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--foreground);
+  flex-shrink: 0;
+}
+
+/* Links Section */
+.linksSection {
+  padding-top: 1.5rem;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--foreground);
+  border: 1px solid var(--card-border);
+  margin: -0.5px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(23, 23, 23, 0.02);
+    z-index: 1;
+
+    .linkTitle {
+      text-decoration: underline;
+    }
+  }
+}
+
+.linkIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(23, 23, 23, 0.04);
+  border: 1px solid white;
+  box-shadow: 0 0 0 1px var(--card-border);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.linkIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--foreground);
+}
+
+.linkContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.linkTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.linkHandle {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.linkArrow {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+/* About Section */
+.aboutSection {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--card-border);
+  overflow: hidden;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background: rgba(23, 23, 23, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.testimonialsRow {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+.testimonialsSlide {
+  display: flex;
+  animation: scrollLeft 35s linear infinite;
+  width: max-content;
+}
+
+.testimonialsSlideReverse {
+  display: flex;
+  animation: scrollRight 35s linear infinite;
+  width: max-content;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.testimonialCards {
+  display: flex;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.testimonialCard {
+  background: white;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1rem;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.testimonialText {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.testimonialAvatar {
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.testimonialName {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.testimonialRole {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+/* Stack Section */
+.stackSection {
+  padding: 2rem 0;
+}
+
+.stackGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.stackItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(23, 23, 23, 0.04);
+  border: 1px solid white;
+  box-shadow: 0 0 0 1px var(--card-border);
+  border-radius: 25px;
+  corner-shape: squircle;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px var(--card-border), 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.375rem 0.625rem;
+    background: var(--foreground);
+    color: var(--background);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--foreground);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  &:hover::after,
+  &:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 3rem 1.25rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .heroInfo {
+    align-items: center;
+  }
+
+  .nameRow {
+    justify-content: center;
+  }
+
+  .name {
+    font-size: 1.75rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
+
+  .infoItemWide {
+    grid-column: span 1;
+  }
+
+  .linksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonialsSection {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .testimonialCard {
+    width: 240px;
+  }
+
+  .stackGrid {
+    justify-content: center;
+  }
+}
