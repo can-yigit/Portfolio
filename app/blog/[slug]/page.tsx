@@ -3,15 +3,18 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { getPostBySlug, getAdjacentPosts, blogPosts } from "../data";
-import ShareButton from "./ShareButton";
+import { getBlogPostBySlug, getAllBlogSlugs, getBlogPosts } from "@/lib/api";
+import ShareButton from "../../components/ShareButton";
+import "@/styles/blog/blog-detail.scss";
 
-// Generate static params for all blog posts
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
+export async function generateStaticParams() {
+  const slugs = await getAllBlogSlugs();
+  return slugs.map((slug) => ({
+    slug: slug,
   }));
 }
+
+export const revalidate = 300;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,159 +22,134 @@ interface PageProps {
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const { prev, next } = getAdjacentPosts(slug);
+  const allPosts = await getBlogPosts();
+  const currentIndex = allPosts.findIndex(p => p.slug === slug);
+  const prev = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const next = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+  const date = new Date(post.created_at).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const readingTime = Math.ceil(post.content.split(' ').length / 100);
+  const author = post.authors?.[0];
 
   return (
     <>
       <Header />
-      <main className="main-content min-h-screen">
-        {/* Navigation Bar */}
-        <section className="pt-24 pb-4 px-4 border-b border-neutral-200 dark:border-neutral-800">
-          <div className="max-w-3xl mx-auto flex items-center justify-between">
-            <Link 
-              href="/blog"
-              className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
-            >
+      <main className="blog-article">
+        <nav className="blog-article-nav">
+          <div className="blog-article-nav__container">
+            <Link href="/blog" className="blog-article-nav__back">
               <ArrowLeftIcon size={16} />
-              <span>Blog</span>
+              <span>Back</span>
             </Link>
             
-            <div className="flex items-center gap-2">
-              {/* Share Button */}
-              <ShareButton />
-              
-              {/* Navigation Arrows */}
+            <div className="blog-article-nav__actions">
+              <ShareButton title={post.title} />
               {prev && (
-                <Link
-                  href={`/blog/${prev.slug}`}
-                  className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
-                  title={prev.title}
-                >
+                <Link href={`/blog/${prev.slug}`} className="blog-article-nav__btn" title={prev.title}>
                   <ArrowLeftIcon size={16} />
                 </Link>
               )}
               {next && (
-                <Link
-                  href={`/blog/${next.slug}`}
-                  className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
-                  title={next.title}
-                >
+                <Link href={`/blog/${next.slug}`} className="blog-article-nav__btn" title={next.title}>
                   <ArrowRightIcon size={16} />
                 </Link>
               )}
             </div>
           </div>
-        </section>
+        </nav>
 
-        {/* Article Content */}
-        <article className="pt-12 pb-20 px-4">
-          <div className="max-w-3xl mx-auto">
-            {/* Header */}
-            <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight">
-                {post.title}
-              </h1>
-              <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-4">
-                {post.excerpt}
-              </p>
-              <p className="text-sm text-neutral-400 dark:text-neutral-500">
-                {post.date}
-              </p>
-            </header>
-
-            {/* Featured Image */}
-            {post.image && (
-              <div className="mb-10 rounded-xl overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-auto"
-                />
-              </div>
+        <header className="blog-article-header">
+          {post.category && (
+            <span className="blog-article-header__category">{post.category}</span>
+          )}
+          <h1 className="blog-article-header__title">{post.title}</h1>
+          <p className="blog-article-header__excerpt">{post.excerpt}</p>
+          
+          <div className="blog-article-header__meta">
+            {author && (
+              <>
+                <div className="blog-article-header__avatar">
+                  {author.avatar ? (
+                    <img src={author.avatar} alt={author.name} />
+                  ) : (
+                    author.name.charAt(0).toUpperCase()
+                  )}
+                </div>
+                <div className="blog-article-header__info">
+                  <p className="blog-article-header__author">{author.name}</p>
+                  <p className="blog-article-header__date">{date}</p>
+                </div>
+              </>
             )}
-
-            {/* Content */}
-            <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-neutral-600 dark:prose-p:text-neutral-400 prose-p:leading-relaxed prose-a:text-neutral-900 dark:prose-a:text-white prose-a:underline prose-a:underline-offset-2 prose-strong:text-neutral-900 dark:prose-strong:text-white prose-ul:text-neutral-600 dark:prose-ul:text-neutral-400 prose-li:marker:text-neutral-400">
-              {post.content.split('\n').map((paragraph, index) => {
-                const trimmed = paragraph.trim();
-                
-                if (!trimmed) return null;
-                
-                // H2 Headers
-                if (trimmed.startsWith('## ')) {
-                  return (
-                    <h2 key={index} className="text-2xl font-semibold text-neutral-900 dark:text-white mt-10 mb-4">
-                      {trimmed.replace('## ', '')}
-                    </h2>
-                  );
-                }
-                
-                // H3 Headers
-                if (trimmed.startsWith('### ')) {
-                  return (
-                    <h3 key={index} className="text-xl font-semibold text-neutral-900 dark:text-white mt-8 mb-3">
-                      {trimmed.replace('### ', '')}
-                    </h3>
-                  );
-                }
-                
-                // List items
-                if (trimmed.startsWith('- ')) {
-                  return (
-                    <li key={index} className="text-neutral-600 dark:text-neutral-400 ml-4">
-                      {trimmed.replace('- ', '')}
-                    </li>
-                  );
-                }
-                
-                // Regular paragraphs
-                return (
-                  <p key={index} className="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
-                    {trimmed}
-                  </p>
-                );
-              })}
-            </div>
-
-            {/* Post Navigation */}
-            <nav className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
-              <div className="grid md:grid-cols-2 gap-4">
-                {prev && (
-                  <Link
-                    href={`/blog/${prev.slug}`}
-                    className="group p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors"
-                  >
-                    <span className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
-                      Previous
-                    </span>
-                    <p className="text-neutral-900 dark:text-white font-medium mt-1 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors line-clamp-1">
-                      {prev.title}
-                    </p>
-                  </Link>
-                )}
-                {next && (
-                  <Link
-                    href={`/blog/${next.slug}`}
-                    className="group p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors md:text-right"
-                  >
-                    <span className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
-                      Next
-                    </span>
-                    <p className="text-neutral-900 dark:text-white font-medium mt-1 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors line-clamp-1">
-                      {next.title}
-                    </p>
-                  </Link>
-                )}
-              </div>
-            </nav>
+            <span className="blog-article-header__reading-time">{readingTime} min read</span>
           </div>
+        </header>
+
+        {post.image && (
+          <div className="blog-article-image">
+            <img src={post.image} alt={post.title} />
+          </div>
+        )}
+
+        <article className="blog-article-content">
+          {post.content.split('\n').map((paragraph, index) => {
+            const trimmed = paragraph.trim();
+            
+            if (!trimmed) return null;
+            
+            if (trimmed.startsWith('### ')) {
+              return <h3 key={index}>{trimmed.replace('### ', '')}</h3>;
+            }
+            
+            if (trimmed.startsWith('## ')) {
+              return <h2 key={index}>{trimmed.replace('## ', '')}</h2>;
+            }
+            
+            if (trimmed.startsWith('# ')) {
+              return <h1 key={index}>{trimmed.replace('# ', '')}</h1>;
+            }
+            
+            if (trimmed.startsWith('- ')) {
+              return <li key={index}>{trimmed.replace('- ', '')}</li>;
+            }
+            
+            return <p key={index}>{trimmed}</p>;
+          })}
         </article>
+
+        <nav className="blog-article-pagination">
+          <div className="blog-article-pagination__grid">
+            {prev && (
+              <Link href={`/blog/${prev.slug}`} className="blog-article-pagination__link">
+                <span className="blog-article-pagination__label">
+                  <ArrowLeftIcon size={12} />
+                  Previous
+                </span>
+                <p className="blog-article-pagination__title">{prev.title}</p>
+              </Link>
+            )}
+            {next && (
+              <Link href={`/blog/${next.slug}`} className="blog-article-pagination__link blog-article-pagination__link--next">
+                <span className="blog-article-pagination__label">
+                  Next
+                  <ArrowRightIcon size={12} />
+                </span>
+                <p className="blog-article-pagination__title">{next.title}</p>
+              </Link>
+            )}
+          </div>
+        </nav>
       </main>
       <Footer />
     </>
