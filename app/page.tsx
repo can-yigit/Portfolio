@@ -5,7 +5,6 @@ import gsap from "gsap";
 import Header from "./components/Header";
 import PortfolioGrid from "./components/PortfolioGrid";
 import Footer from "./components/Footer";
-import { Meteors } from "@/components/ui/meteors";
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -83,19 +82,15 @@ export default function Home() {
         <section ref={heroRef} className="hero-section relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 -z-10">
-            {/* Gradient orbs - light mode */}
-            <div className="dark:hidden">
-              <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-violet-200/30 via-fuchsia-200/20 to-transparent rounded-full blur-3xl" />
-              <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-gradient-to-tl from-blue-200/30 via-cyan-200/20 to-transparent rounded-full blur-3xl" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-rose-100/20 via-transparent to-indigo-100/20 rounded-full blur-3xl" />
-            </div>
-            {/* Meteors - dark mode only */}
-            <div className="hidden dark:block">
-              <Meteors number={40} className="bg-white [&>div]:bg-gradient-to-r [&>div]:from-white [&>div]:to-transparent" />
+            {/* Gradient orbs - green theme */}
+            <div>
+              <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-emerald-200/30 via-green-200/20 to-transparent rounded-full blur-3xl" />
+              <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-gradient-to-tl from-teal-200/30 via-emerald-200/20 to-transparent rounded-full blur-3xl" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-100/20 via-transparent to-teal-100/20 rounded-full blur-3xl" />
             </div>
             {/* Subtle grid pattern */}
             <div 
-              className="absolute inset-0 opacity-[0.015] dark:opacity-[0.02]"
+              className="absolute inset-0 opacity-[0.015]"
               style={{
                 backgroundImage: `linear-gradient(rgba(128,128,128,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.1) 1px, transparent 1px)`,
                 backgroundSize: '60px 60px'

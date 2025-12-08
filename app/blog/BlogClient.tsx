@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { PinIcon, ClockIcon } from "lucide-react";
 import type { BlogPost } from "@/lib/api";
+import AuthorStack from "./components/AuthorStack";
 import "@/styles/blog/blog-list.scss";
 
 const isValidImageUrl = (url: string) => {
@@ -74,7 +75,6 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
         {filteredPosts.length > 0 ? (
           <div className="blog-posts">
             {filteredPosts.map((post) => {
-              const author = post.authors?.[0];
               const readingTime = Math.ceil(post.content.split(' ').length / 100);
               
               return (
@@ -114,17 +114,8 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
                       <h2 className="blog-post__title">{post.title}</h2>
                       <p className="blog-post__excerpt">{post.excerpt}</p>
                       
-                      {author && (
-                        <div className="blog-post__author">
-                          <div className="blog-post__avatar">
-                            {author.avatar ? (
-                              <img src={author.avatar} alt={author.name} />
-                            ) : (
-                              author.name.charAt(0).toUpperCase()
-                            )}
-                          </div>
-                          <span className="blog-post__author-name">{author.name}</span>
-                        </div>
+                      {post.authors && post.authors.length > 0 && (
+                        <AuthorStack authors={post.authors} size="sm" />
                       )}
                     </div>
                   </article>
@@ -142,4 +133,3 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
     </>
   );
 }
-

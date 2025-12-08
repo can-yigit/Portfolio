@@ -270,12 +270,24 @@
     }
   }
   
+  ul, ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  ul {
+    list-style-type: disc;
+  }
+  
+  ol {
+    list-style-type: decimal;
+  }
+  
   li {
     font-size: 1.0625rem;
     color: #333;
     line-height: 1.75;
     margin-bottom: 0.5rem;
-    margin-left: 1.5rem;
     
     .dark & {
       color: #ccc;
@@ -283,6 +295,155 @@
     
     &::marker {
       color: #999;
+    }
+  }
+  
+  // Inline code
+  code:not([class*="language-"]) {
+    padding: 0.2em 0.4em;
+    background: #f5f5f5;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    color: #e01e5a;
+    
+    .dark & {
+      background: #1a1a1a;
+      color: #ff6b8a;
+    }
+  }
+  
+  // Block quotes
+  blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #eaeaea;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+    
+    .dark & {
+      border-left-color: #444;
+      background: #111;
+    }
+    
+    p {
+      margin: 0;
+      color: #666;
+      font-style: italic;
+      
+      .dark & {
+        color: #999;
+      }
+    }
+  }
+  
+  // Links
+  a {
+    color: #0a0a0a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+    
+    .dark & {
+      color: #fafafa;
+    }
+    
+    &:hover {
+      color: #666;
+      
+      .dark & {
+        color: #888;
+      }
+    }
+  }
+  
+  // Horizontal rule
+  hr {
+    margin: 3rem 0;
+    border: none;
+    border-top: 1px solid #eaeaea;
+    
+    .dark & {
+      border-top-color: #262626;
+    }
+  }
+  
+  // Strong
+  strong {
+    font-weight: 600;
+    color: #0a0a0a;
+    
+    .dark & {
+      color: #fafafa;
+    }
+  }
+  
+  // Emphasis
+  em {
+    font-style: italic;
+  }
+}
+
+// Author Stack in article header
+.blog-article-header {
+  .blog-author-stack {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+    &__avatars {
+      display: flex;
+      align-items: center;
+    }
+    
+    &__avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #666;
+      border: 2px solid #fff;
+      flex-shrink: 0;
+      
+      .dark & {
+        background: #262626;
+        color: #888;
+        border-color: #0a0a0a;
+      }
+      
+      &:not(:first-child) {
+        margin-left: -0.75rem;
+      }
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      &--more {
+        background: #f5f5f5;
+        
+        .dark & {
+          background: #1a1a1a;
+        }
+      }
+    }
+    
+    &__names {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      
+      .dark & {
+        color: #fafafa;
+      }
     }
   }
 }

@@ -5,6 +5,8 @@ import Footer from "../../components/Footer";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getBlogPostBySlug, getAllBlogSlugs, getBlogPosts } from "@/lib/api";
 import ShareButton from "../../components/ShareButton";
+import BlogContent from "../components/BlogContent";
+import AuthorStack from "../components/AuthorStack";
 import "@/styles/blog/blog-detail.scss";
 
 export async function generateStaticParams() {
@@ -40,7 +42,6 @@ export default async function BlogPostPage({ params }: PageProps) {
   });
 
   const readingTime = Math.ceil(post.content.split(' ').length / 100);
-  const author = post.authors?.[0];
 
   return (
     <>
@@ -77,22 +78,13 @@ export default async function BlogPostPage({ params }: PageProps) {
           <p className="blog-article-header__excerpt">{post.excerpt}</p>
           
           <div className="blog-article-header__meta">
-            {author && (
-              <>
-                <div className="blog-article-header__avatar">
-                  {author.avatar ? (
-                    <img src={author.avatar} alt={author.name} />
-                  ) : (
-                    author.name.charAt(0).toUpperCase()
-                  )}
-                </div>
-                <div className="blog-article-header__info">
-                  <p className="blog-article-header__author">{author.name}</p>
-                  <p className="blog-article-header__date">{date}</p>
-                </div>
-              </>
+            {post.authors && post.authors.length > 0 && (
+              <AuthorStack authors={post.authors} size="lg" />
             )}
-            <span className="blog-article-header__reading-time">{readingTime} min read</span>
+            <div className="blog-article-header__info">
+              <p className="blog-article-header__date">{date}</p>
+              <span className="blog-article-header__reading-time">{readingTime} min read</span>
+            </div>
           </div>
         </header>
 
@@ -103,29 +95,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         )}
 
         <article className="blog-article-content">
-          {post.content.split('\n').map((paragraph, index) => {
-            const trimmed = paragraph.trim();
-            
-            if (!trimmed) return null;
-            
-            if (trimmed.startsWith('### ')) {
-              return <h3 key={index}>{trimmed.replace('### ', '')}</h3>;
-            }
-            
-            if (trimmed.startsWith('## ')) {
-              return <h2 key={index}>{trimmed.replace('## ', '')}</h2>;
-            }
-            
-            if (trimmed.startsWith('# ')) {
-              return <h1 key={index}>{trimmed.replace('# ', '')}</h1>;
-            }
-            
-            if (trimmed.startsWith('- ')) {
-              return <li key={index}>{trimmed.replace('- ', '')}</li>;
-            }
-            
-            return <p key={index}>{trimmed}</p>;
-          })}
+          <BlogContent content={post.content} />
         </article>
 
         <nav className="blog-article-pagination">
@@ -155,4 +125,3 @@ export default async function BlogPostPage({ params }: PageProps) {
     </>
   );
 }
-

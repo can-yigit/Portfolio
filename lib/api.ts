@@ -5,6 +5,10 @@ const fetchOptions: RequestInit = CACHE_ENABLED
   ? { cache: 'force-cache', next: { revalidate: 300 } } as RequestInit
   : { cache: 'no-store' };
 
+// ========================================
+// BLOG API
+// ========================================
+
 function isValidBlogPost(post: any): post is BlogPost {
   return (
     post &&
@@ -96,6 +100,81 @@ export async function getAllBlogSlugs(): Promise<string[]> {
   } catch (error) {
     console.error('Error fetching blog slugs:', error);
     return [];
+  }
+}
+
+// ========================================
+// PROJECTS API
+// ========================================
+
+export interface ProjectLanguage {
+  id: string;
+  icon: string;
+  name: string;
+}
+
+export interface ProjectAuthor {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string | null;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string | null;
+  link: string | null;
+  category: string | null;
+  languages: ProjectLanguage[];
+  authors: ProjectAuthor[];
+  created_at: string;
+  updated_at: string;
+}
+
+function isValidProject(project: any): project is Project {
+  return (
+    project &&
+    typeof project.id === 'string' &&
+    typeof project.title === 'string' &&
+    project.title.trim().length > 0 &&
+    typeof project.description === 'string'
+  );
+}
+
+export async function getProjects(): Promise<Project[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/projects`, fetchOptions);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch projects');
+    }
+
+    const data = await response.json();
+    return Array.isArray(data) ? data.filter(isValidProject) : [];
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
+}
+
+export async function getProjectById(id: string): Promise<Project | null> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/projects/${id}`, fetchOptions);
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+      throw new Error('Failed to fetch project');
+    }
+
+    const data = await response.json();
+    return isValidProject(data) ? data : null;
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    return null;
   }
 }
 

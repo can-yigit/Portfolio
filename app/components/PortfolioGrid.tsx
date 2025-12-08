@@ -31,7 +31,7 @@ const techItems = [
 const clients = [
   { name: "HEPTACOM", color: "bg-blue-500" },
   { name: "Client 2", color: "bg-emerald-500" },
-  { name: "Client 3", color: "bg-violet-500" },
+  { name: "Client 3", color: "bg-teal-500" },
   { name: "Client 4", color: "bg-amber-500" },
 ];
 
@@ -49,9 +49,9 @@ function CollaborationBackground() {
       <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgb(167, 139, 250)" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="rgb(139, 92, 246)" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="rgb(167, 139, 250)" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="rgb(110, 231, 183)" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="rgb(16, 185, 129)" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="rgb(110, 231, 183)" stopOpacity="0.3" />
           </linearGradient>
         </defs>
         {/* Lines from center to clients */}
@@ -85,17 +85,17 @@ function CollaborationBackground() {
 
       {/* Decorative circles */}
       <div className="absolute flex items-center gap-0 z-10">
-        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/40 dark:border-neutral-700/40 bg-neutral-50/30 dark:bg-neutral-800/30 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
-        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/50 dark:border-neutral-700/50 bg-neutral-50/40 dark:bg-neutral-800/40 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
-        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-3 border-violet-300/60 dark:border-violet-500/60 bg-white dark:bg-neutral-900 shadow-xl -ml-4 md:-ml-5 overflow-hidden z-10 ring-4 ring-violet-100/50 dark:ring-violet-900/50">
+        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/40 bg-neutral-50/30 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
+        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/50 bg-neutral-50/40 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
+        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-3 border-emerald-300/60 bg-white shadow-xl -ml-4 md:-ml-5 overflow-hidden z-10 ring-4 ring-emerald-100/50">
           <img 
             src="/profile.png" 
             alt="Can Yigit" 
             className="w-full h-full object-cover"
           />
         </div>
-        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/50 dark:border-neutral-700/50 bg-neutral-50/40 dark:bg-neutral-800/40 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
-        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/40 dark:border-neutral-700/40 bg-neutral-50/30 dark:bg-neutral-800/30 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
+        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/50 bg-neutral-50/40 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
+        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-neutral-200/40 bg-neutral-50/30 -ml-4 md:-ml-5 transition-all duration-500 ${isHovered ? 'scale-90 opacity-60' : ''}`} />
       </div>
     </div>
   );
@@ -107,8 +107,8 @@ function TechMarquee() {
     <div className="absolute inset-0 flex flex-col justify-start gap-2 md:gap-3 px-2 pt-3 md:pt-4 overflow-hidden">
       {/* Header */}
       <div className="text-center px-3 md:px-4 pt-1 md:pt-2 pb-1 md:pb-2 z-20">
-        <p className="text-[10px] md:text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">My Stack</p>
-        <h3 className="text-sm md:text-base font-semibold bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
+        <p className="text-[10px] md:text-xs text-neutral-400 uppercase tracking-wider mb-1">My Stack</p>
+        <h3 className="text-sm md:text-base font-semibold bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 bg-clip-text text-transparent">
           Technologies I love
         </h3>
       </div>
@@ -117,10 +117,10 @@ function TechMarquee() {
           {techItems.slice(0, 7).map((tech, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm"
+              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-neutral-200 shadow-sm"
             >
               <img src={tech.icon} alt={tech.name} className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-xs md:text-sm font-medium text-neutral-700 dark:text-neutral-200">{tech.name}</span>
+              <span className="text-xs md:text-sm font-medium text-neutral-700">{tech.name}</span>
             </div>
           ))}
         </Marquee>
@@ -128,10 +128,10 @@ function TechMarquee() {
           {techItems.slice(7).map((tech, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm"
+              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-neutral-200 shadow-sm"
             >
               <img src={tech.icon} alt={tech.name} className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-xs md:text-sm font-medium text-neutral-700 dark:text-neutral-200">{tech.name}</span>
+              <span className="text-xs md:text-sm font-medium text-neutral-700">{tech.name}</span>
             </div>
           ))}
         </Marquee>
@@ -139,15 +139,15 @@ function TechMarquee() {
           {[...techItems.slice(3, 10)].map((tech, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm"
+              className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-neutral-200 shadow-sm"
             >
               <img src={tech.icon} alt={tech.name} className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-xs md:text-sm font-medium text-neutral-700 dark:text-neutral-200">{tech.name}</span>
+              <span className="text-xs md:text-sm font-medium text-neutral-700">{tech.name}</span>
             </div>
           ))}
         </Marquee>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 bg-gradient-to-t from-white to-transparent z-10" />
     </div>
   );
 }
@@ -158,23 +158,23 @@ function GlobeBackground() {
     <div className="absolute inset-0 flex flex-col items-center overflow-hidden">
       {/* Header section */}
       <div className="pt-4 md:pt-6 px-4 text-center z-20">
-        <p className="text-[10px] md:text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-2">Remote Ready</p>
-        <h3 className="text-sm md:text-base font-semibold bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-400 bg-clip-text text-transparent leading-tight mb-3">
+        <p className="text-[10px] md:text-xs text-neutral-400 uppercase tracking-wider mb-2">Remote Ready</p>
+        <h3 className="text-sm md:text-base font-semibold bg-gradient-to-r from-emerald-400 via-green-500 to-teal-400 bg-clip-text text-transparent leading-tight mb-3">
           Available worldwide
         </h3>
         {/* Country flags */}
         <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-2">
-          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/90 dark:bg-neutral-800/90 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/90 border border-neutral-200 shadow-sm">
             <span className="text-xs md:text-sm">🇬🇧</span>
-            <span className="text-[10px] md:text-xs font-medium text-neutral-600 dark:text-neutral-300">UK</span>
+            <span className="text-[10px] md:text-xs font-medium text-neutral-600">UK</span>
           </div>
-          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 shadow-sm">
+          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-green-50 border border-green-200 shadow-sm">
             <span className="text-xs md:text-sm">🇩🇪</span>
-            <span className="text-[10px] md:text-xs font-medium text-green-700 dark:text-green-400">Germany</span>
+            <span className="text-[10px] md:text-xs font-medium text-green-700">Germany</span>
           </div>
-          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/90 dark:bg-neutral-800/90 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+          <div className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/90 border border-neutral-200 shadow-sm">
             <span className="text-xs md:text-sm">🇺🇸</span>
-            <span className="text-[10px] md:text-xs font-medium text-neutral-600 dark:text-neutral-300">USA</span>
+            <span className="text-[10px] md:text-xs font-medium text-neutral-600">USA</span>
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@ function GlobeBackground() {
             devicePixelRatio: 2,
             phi: 0,
             theta: 0.3,
-            dark: 0,
+            dark: 0, // Light mode
             diffuse: 0.8,
             mapSamples: 20000,
             mapBrightness: 1.2,
@@ -214,20 +214,20 @@ function GlobeBackground() {
 function ContactBackground() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-5">
-      <h3 className="text-lg md:text-xl text-neutral-400 dark:text-neutral-500 leading-snug mb-3" style={{ fontFamily: 'Georgia, serif' }}>
-        Let's work <span className="italic text-neutral-500 dark:text-neutral-400">together</span>
+      <h3 className="text-lg md:text-xl text-neutral-400 leading-snug mb-3" style={{ fontFamily: 'Georgia, serif' }}>
+        Let's work <span className="italic text-neutral-500">together</span>
         <br />
-        on your next <span className="italic text-neutral-500 dark:text-neutral-400">project</span>
+        on your next <span className="italic text-neutral-500">project</span>
       </h3>
       <a 
         href="mailto:can@yigit.dev"
-        className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all group"
+        className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 hover:bg-neutral-200 hover:border-neutral-300 transition-all group"
       >
-        <svg className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg className="w-4 h-4 text-neutral-400 group-hover:text-neutral-600 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
         </svg>
-        <span className="text-xs md:text-sm font-medium text-neutral-600 dark:text-neutral-300">can@yigit.dev</span>
+        <span className="text-xs md:text-sm font-medium text-neutral-600">can@yigit.dev</span>
       </a>
     </div>
   );
@@ -236,23 +236,23 @@ function ContactBackground() {
 // 5. Safari Preview Component - Wide card bottom
 function SafariPreview() {
   return (
-    <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-neutral-50 dark:from-neutral-800/50 to-neutral-100/50 dark:to-neutral-900/50">
+    <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100/50">
       {/* Left side content */}
       <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-10">
-        <h3 className="text-lg md:text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-0.5">
+        <h3 className="text-lg md:text-xl font-semibold text-neutral-800 mb-0.5">
           Websites that
         </h3>
-        <h3 className="text-lg md:text-xl font-semibold text-rose-500 mb-2 md:mb-3">
+        <h3 className="text-lg md:text-xl font-semibold text-emerald-500 mb-2 md:mb-3">
           Impact.
         </h3>
         <div className="flex items-center gap-2">
-          <a href="#" className="px-3 md:px-4 py-1.5 md:py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-xs md:text-sm font-medium rounded-lg hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors flex items-center gap-1">
+          <a href="#" className="px-3 md:px-4 py-1.5 md:py-2 bg-neutral-900 text-white text-xs md:text-sm font-medium rounded-lg hover:bg-neutral-800 transition-colors flex items-center gap-1">
             Start
             <svg className="w-3 h-3 md:w-4 md:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a href="#" className="px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors">
+          <a href="#" className="px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors">
             Details
           </a>
         </div>

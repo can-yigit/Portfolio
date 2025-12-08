@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SearchIcon, GithubIcon } from "lucide-react";
 import CommandPalette from "./CommandPalette";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 const navItems = [
   { label: "Portfolio", href: "/" },
@@ -55,7 +54,7 @@ export default function Header() {
               <img 
                 src="/CYLogo.png" 
                 alt="Can Yigit" 
-                className="h-8 w-auto invert dark:invert-0"
+                className="h-8 w-auto invert"
               />
             </a>
           </div>
@@ -81,12 +80,12 @@ export default function Header() {
             {/* Search Button */}
             <button
               onClick={() => setIsCommandOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-neutral-200 transition-colors text-sm"
               aria-label="Open search"
             >
               <SearchIcon size={14} />
               <span className="hidden md:inline text-xs">Search...</span>
-              <kbd className="hidden md:flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 text-[10px] font-mono text-neutral-500 dark:text-neutral-400">
+              <kbd className="hidden md:flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-white border border-neutral-300 text-[10px] font-mono text-neutral-500">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -97,16 +96,11 @@ export default function Header() {
               href="https://github.com/can-yigit"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+              className="flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-600 hover:bg-neutral-200 transition-colors"
               aria-label="GitHub"
             >
               <GithubIcon size={16} />
             </a>
-
-            {/* Theme Toggle */}
-            <AnimatedThemeToggler 
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors [&_svg]:w-4 [&_svg]:h-4"
-            />
           </div>
         </div>
       </header>
