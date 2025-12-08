@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           
           <div className="blog-article-header__meta">
             {post.authors && post.authors.length > 0 && (
-              <AuthorStack authors={post.authors} size="lg" />
+              <AuthorStack authors={post.authors.map(author => ({ ...author, id: String(author.id) }))} size="lg" />
             )}
             <div className="blog-article-header__info">
               <p className="blog-article-header__date">{date}</p>

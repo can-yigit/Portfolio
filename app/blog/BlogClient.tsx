@@ -115,7 +115,7 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
                       <p className="blog-post__excerpt">{post.excerpt}</p>
                       
                       {post.authors && post.authors.length > 0 && (
-                        <AuthorStack authors={post.authors} size="sm" />
+                        <AuthorStack authors={post.authors.map(author => ({ ...author, id: String(author.id) }))} size="sm" />
                       )}
                     </div>
                   </article>
