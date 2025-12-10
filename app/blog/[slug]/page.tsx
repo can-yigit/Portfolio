@@ -70,8 +70,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         </nav>
 
         <header className="blog-article-header">
-          {post.category && (
-            <span className="blog-article-header__category">{post.category}</span>
+          {post.categories?.[0] && (
+            <span className="blog-article-header__category">{post.categories[0].name}</span>
           )}
           <h1 className="blog-article-header__title">{post.title}</h1>
           <p className="blog-article-header__excerpt">{post.excerpt}</p>
