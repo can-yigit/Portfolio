@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { Project } from "@/lib/api";
 import { ArrowUpRightIcon, ArrowRightIcon } from "lucide-react";
 import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
+import { ShinyButton } from "@/components/ui/shiny-button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -141,12 +142,26 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
 
         {filteredProjects.length > 0 ? (
           <div className="pb-32">
-            {years.map((year) => (
+            {years.map((year, yearIndex) => (
               <div key={year}>
-                <div className="px-6 py-16">
-                  <div className="max-w-7xl mx-auto">
-                    <h2 className="text-5xl md:text-6xl font-bold text-neutral-900">{year}</h2>
-                    <div className="h-1 w-20 bg-neutral-900 mt-4" />
+                <div className="px-6 py-20 md:py-24 relative overflow-hidden">
+                  <div className="max-w-7xl mx-auto relative">
+                    <div className="flex items-center gap-8 md:gap-12">
+                      <div className="flex-shrink-0">
+                        <div className="relative">
+                          <div className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none text-neutral-100 select-none">
+                            {year}
+                          </div>
+                          <div className="absolute inset-0 text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none bg-gradient-to-br from-neutral-900 via-neutral-700 to-neutral-500 bg-clip-text text-transparent">
+                            {year}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex-1 h-px bg-gradient-to-r from-neutral-300 to-transparent"></div>
+                      <div className="text-sm md:text-base font-semibold text-neutral-400 uppercase tracking-wider">
+                        {projectsByYear[year].length} {projectsByYear[year].length === 1 ? 'Project' : 'Projects'}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -155,11 +170,23 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
                   return (
                     <section
                       key={project.id}
-                      className={`project-section flex items-center py-24 px-6 ${
+                      className={`project-section relative flex items-center py-24 px-6 overflow-hidden ${
                         globalIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-50'
                       }`}
                     >
-                      <div className="max-w-7xl mx-auto w-full">
+                      {/* Subtle Grid Pattern */}
+                      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+                        backgroundImage: `
+                          linear-gradient(to right, rgb(0 0 0 / 0.1) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgb(0 0 0 / 0.1) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '80px 80px',
+                      }}></div>
+                      
+                      {/* Subtle radial gradient */}
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-50/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+                      
+                      <div className="max-w-7xl mx-auto w-full relative z-10">
                         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
                           globalIndex % 2 === 1 ? 'lg:flex-row-reverse' : ''
                         }`}>
@@ -184,32 +211,26 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
                               {project.description}
                             </p>
 
-                            <div className="flex items-center gap-6 mb-8">
-                        {project.authors && project.authors.length > 0 && (
-                          <div>
-                            <p className="text-xs text-neutral-400 font-medium mb-1">Team</p>
-                            <p className="text-lg font-bold text-neutral-900">{project.authors.length}</p>
-                          </div>
-                              )}
-                            </div>
-
                             {project.languages && project.languages.length > 0 && (
-                        <div className="mb-8">
+                        <div className="mb-8 mt-3">
                           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-4">
                             Technologies
                           </h3>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-3">
                             {project.languages.map((lang) => (
                               <div
                                 key={lang.id}
-                                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-neutral-200"
+                                className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 hover:border-emerald-300 hover:shadow-md transition-all duration-200"
                               >
                                 {lang.icon && (
-                                  <img src={lang.icon} alt={lang.name} className="w-4 h-4" />
+                                  <div className="w-5 h-5 flex items-center justify-center">
+                                    <img src={lang.icon} alt={lang.name} className="w-full h-full object-contain" />
+                                  </div>
                                 )}
-                                <span className="text-sm font-semibold text-neutral-900">
+                                <span className="text-sm font-semibold text-neutral-800 group-hover:text-emerald-700 transition-colors">
                                   {lang.name}
                                 </span>
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-400/0 to-green-400/0 group-hover:from-emerald-400/5 group-hover:to-green-400/5 transition-all duration-200"></div>
                               </div>
                             ))}
                           </div>
@@ -218,7 +239,7 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
 
                       {/* Team */}
                       {project.authors && project.authors.length > 0 && (
-                        <div className="mb-8">
+                        <div className="mb-8 mt-1">
                           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-4">
                             Team
                           </h3>
@@ -254,15 +275,18 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
 
                       {/* CTA */}
                       {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-neutral-900 text-white font-bold hover:bg-neutral-800 transition-all hover:gap-4 group"
-                        >
-                          <span>View Project</span>
-                          <ArrowUpRightIcon size={20} className="group-hover:rotate-45 transition-transform" />
-                              </a>
+                        <div className="mt-1">
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ShinyButton className="bg-neutral-900 text-white border-0 hover:bg-neutral-800">
+                              View Project
+                              <ArrowUpRightIcon size={20} className="group-hover:rotate-45 transition-transform" />
+                            </ShinyButton>
+                          </a>
+                        </div>
                             )}
                           </div>
 

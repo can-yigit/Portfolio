@@ -111,7 +111,6 @@ export default function Footer() {
 
             {/* Social */}
             <div className="flex flex-col gap-3">
-              <span className="text-xs text-neutral-400 uppercase tracking-wider mb-1">Connect</span>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
                   <a

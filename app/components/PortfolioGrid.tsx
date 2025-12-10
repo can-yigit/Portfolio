@@ -9,13 +9,9 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Marquee } from "@/components/ui/marquee";
 import { Globe } from "@/components/ui/globe";
 import { Safari } from "@/components/ui/safari";
-import { getTechStack } from "@/lib/api";
+import { getTechStack, TechStack } from "@/lib/api";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Tech Stack Items
-
-const techItems = await getTechStack();
 
 // Client avatars for collaboration card
 const clients = [
@@ -92,7 +88,17 @@ function CollaborationBackground() {
 }
 
 // 2. Tech Marquee Component - Tall card (1 col, 2 rows)
-async function TechMarquee() {
+function TechMarquee() {
+  const [techItems, setTechItems] = useState<TechStack[]>([]);
+
+  useEffect(() => {
+    getTechStack().then(setTechItems);
+  }, []);
+
+  if (techItems.length === 0) {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0 flex flex-col justify-start gap-2 md:gap-3 px-2 pt-3 md:pt-4 overflow-hidden">
       {/* Header */}
@@ -170,22 +176,22 @@ function GlobeBackground() {
       </div>
       
       {/* Globe at bottom - only top half visible */}
-      <div className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[400px] md:w-[500px] h-[400px] md:h-[500px]">
+      <div className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[400px] md:w-[500px] h-[400px] md:h-[500px] z-0">
         <Globe
-          className="w-full h-full opacity-70"
-          speed={0.001}
+          className="w-full h-full"
+          speed={0.002}
           config={{
             width: 800,
             height: 800,
             devicePixelRatio: 2,
             phi: 0,
             theta: 0.3,
-            dark: 0, // Light mode
+            dark: 0,
             diffuse: 0.8,
             mapSamples: 20000,
             mapBrightness: 1.2,
             baseColor: [0.9, 0.9, 0.93],
-            markerColor: [0.4, 0.5, 1],
+            markerColor: [0.16, 0.73, 0.51],
             glowColor: [0.8, 0.8, 0.9],
             markers: [
               { location: [53.0793, 8.8017], size: 0.08 },
@@ -210,14 +216,14 @@ function ContactBackground() {
         on your next <span className="italic text-neutral-500">project</span>
       </h3>
       <a 
-        href="mailto:can@yigit.dev"
+        href="mailto:info@canyigit.com" 
         className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 hover:bg-neutral-200 hover:border-neutral-300 transition-all group"
       >
         <svg className="w-4 h-4 text-neutral-400 group-hover:text-neutral-600 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
         </svg>
-        <span className="text-xs md:text-sm font-medium text-neutral-600">can@yigit.dev</span>
+        <span className="text-xs md:text-sm font-medium text-neutral-600">info@canyigit.com</span>
       </a>
     </div>
   );
@@ -265,47 +271,48 @@ function SafariPreview() {
   | 3  | 4  | 2  |
   | 3  | 5  | 5  |
 */
-const features = [
-  // 1. Collaboration - Row 1, Cols 1-2
-  {
-    Icon: HeartHandshakeIcon,
-    name: "Collaboration",
-    description: "Building lasting partnerships through open communication",
-    className: "col-span-3 md:col-span-2 md:col-start-1 md:row-start-1",
-    background: <CollaborationBackground />,
-  },
-  // 2. Tech Stack - Col 3, Rows 1-2
-  {
-    name: "",
-    description: "",
-    className: "col-span-3 md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2",
-    background: <TechMarquee />,
-  },
-  // 3. Globe - Col 1, Rows 2-3
-  {
-    name: "",
-    description: "",
-    className: "col-span-3 md:col-span-1 md:col-start-1 md:row-start-2 md:row-span-2",
-    background: <GlobeBackground />,
-  },
-  // 4. Contact - Col 2, Row 2
-  {
-    name: "",
-    description: "",
-    className: "col-span-3 md:col-span-1 md:col-start-2 md:row-start-2",
-    background: <ContactBackground />,
-  },
-  // 5. Safari Banner - Cols 2-3, Row 3
-  {
-    name: "",
-    description: "",
-    className: "col-span-3 md:col-span-2 md:col-start-2 md:row-start-3",
-    background: <SafariPreview />,
-  },
-];
 
 export default function PortfolioGrid() {
   const gridRef = useRef<HTMLElement>(null);
+
+  const features = [
+    // 1. Collaboration - Row 1, Cols 1-2
+    {
+      Icon: HeartHandshakeIcon,
+      name: "Collaboration",
+      description: "Building lasting partnerships through open communication",
+      className: "col-span-3 md:col-span-2 md:col-start-1 md:row-start-1",
+      background: <CollaborationBackground />,
+    },
+    // 2. Tech Stack - Col 3, Rows 1-2
+    {
+      name: "",
+      description: "",
+      className: "col-span-3 md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2",
+      background: <TechMarquee />,
+    },
+    // 3. Globe - Col 1, Rows 2-3
+    {
+      name: "",
+      description: "",
+      className: "col-span-3 md:col-span-1 md:col-start-1 md:row-start-2 md:row-span-2",
+      background: <GlobeBackground />,
+    },
+    // 4. Contact - Col 2, Row 2
+    {
+      name: "",
+      description: "",
+      className: "col-span-3 md:col-span-1 md:col-start-2 md:row-start-2",
+      background: <ContactBackground />,
+    },
+    // 5. Safari Banner - Cols 2-3, Row 3
+    {
+      name: "",
+      description: "",
+      className: "col-span-3 md:col-span-2 md:col-start-2 md:row-start-3",
+      background: <SafariPreview />,
+    },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
