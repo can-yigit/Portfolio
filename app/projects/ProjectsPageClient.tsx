@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Project } from "@/lib/api";
 import { ArrowUpRightIcon, ArrowRightIcon } from "lucide-react";
-import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
 import { ShinyButton } from "@/components/ui/shiny-button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -281,9 +280,11 @@ export default function ProjectsPageClient({ projects }: ProjectsPageClientProps
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ShinyButton className="bg-neutral-900 text-white border-0 hover:bg-neutral-800">
-                              View Project
-                              <ArrowUpRightIcon size={20} className="group-hover:rotate-45 transition-transform" />
+                            <ShinyButton >
+                              <span className="flex items-center gap-2">
+                                View Project
+                                <ArrowUpRightIcon size={20} className="group-hover:rotate-45 transition-transform" />
+                              </span>
                             </ShinyButton>
                           </a>
                         </div>
