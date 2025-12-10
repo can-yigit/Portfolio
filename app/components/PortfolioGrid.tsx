@@ -9,23 +9,13 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Marquee } from "@/components/ui/marquee";
 import { Globe } from "@/components/ui/globe";
 import { Safari } from "@/components/ui/safari";
+import { getTechStack } from "@/lib/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Tech Stack Items
-const techItems = [
-  { name: "Shopware", icon: "/icons/shopware.svg" },
-  { name: "React", icon: "/icons/react.svg" },
-  { name: "Next.js", icon: "/icons/nextjs.svg" },
-  { name: "Docker", icon: "/icons/docker.svg" },
-  { name: "PHP", icon: "/icons/php.svg" },
-  { name: "TypeScript", icon: "/icons/typescript.svg" },
-  { name: "MySQL", icon: "/icons/mysql.svg" },
-  { name: "Figma", icon: "/icons/figma.svg" },
-  { name: "Node.js", icon: "/icons/nodejs.svg" },
-  { name: "Tailwind", icon: "/icons/tailwind.svg" },
-  { name: "Git", icon: "/icons/git.svg" },
-];
+
+const techItems = await getTechStack();
 
 // Client avatars for collaboration card
 const clients = [
@@ -34,7 +24,7 @@ const clients = [
   { name: "Client 3", color: "bg-teal-500" },
   { name: "Client 4", color: "bg-amber-500" },
 ];
-
+  
 // 1. Collaboration Background - Wide card top with hover animation
 function CollaborationBackground() {
   const [isHovered, setIsHovered] = useState(false);
@@ -102,7 +92,7 @@ function CollaborationBackground() {
 }
 
 // 2. Tech Marquee Component - Tall card (1 col, 2 rows)
-function TechMarquee() {
+async function TechMarquee() {
   return (
     <div className="absolute inset-0 flex flex-col justify-start gap-2 md:gap-3 px-2 pt-3 md:pt-4 overflow-hidden">
       {/* Header */}

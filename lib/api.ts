@@ -63,6 +63,25 @@ export async function getCategories(): Promise<BlogCategory[]> {
   }
 }
 
+export interface TechStack {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+export async function getTechStack(): Promise<TechStack[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/languages`, fetchOptions);
+    if (!response.ok) {
+      throw new Error('Failed to fetch tech stack');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching tech stack:', error);
+    return [];
+  }
+}
+
 export async function getBlogPosts(categoryId?: string): Promise<BlogPost[]> {
   try {
     const url = categoryId 

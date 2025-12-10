@@ -135,7 +135,7 @@ export default function Home() {
                   </svg>
                 </span>
               </a>
-              <a href="mailto:can@yigit.dev" className="btn btn-primary contact-indicator">
+              <a href="mailto:can.yigit@outlook.de" className="btn btn-primary contact-indicator">
                 <span className="btn-text">Get in Touch</span>
                 <span className="btn-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
