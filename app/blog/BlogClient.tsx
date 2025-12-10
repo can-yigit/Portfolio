@@ -29,7 +29,7 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
       post.slug.trim().length > 0 &&
       post.title &&
       post.title.trim().length > 0 &&
-      post.excerpt &&
+      typeof post.excerpt === 'string' &&
       post.created_at &&
       post.authors &&
       post.authors.length > 0
