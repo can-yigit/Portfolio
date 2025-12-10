@@ -1,9 +1,13 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-const CACHE_ENABLED = process.env.NEXT_PUBLIC_API_CACHE === 'true';
 
-const fetchOptions: RequestInit = CACHE_ENABLED
-  ? { cache: 'force-cache', next: { revalidate: 300 } } as RequestInit
-  : { cache: 'no-store' };
+const fetchOptions: RequestInit = { 
+  cache: 'no-store',
+  headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  }
+};
 
 // ========================================
 // BLOG API
@@ -14,20 +18,7 @@ function isValidBlogPost(post: any): post is BlogPost {
     post &&
     typeof post.id === 'number' &&
     typeof post.slug === 'string' &&
-    post.slug.trim().length > 0 &&
-    typeof post.title === 'string' &&
-    post.title.trim().length > 0 &&
-    typeof post.excerpt === 'string' &&
-    typeof post.content === 'string' &&
-    typeof post.created_at === 'string' &&
-    Array.isArray(post.authors) &&
-    post.authors.length > 0 &&
-    post.authors.every((author: any) => 
-      author && 
-      (typeof author.id === 'number' || typeof author.id === 'string') &&
-      typeof author.name === 'string' &&
-      author.name.trim().length > 0
-    )
+    typeof post.title === 'string'
   );
 }
 
@@ -157,9 +148,7 @@ function isValidProject(project: any): project is Project {
   return (
     project &&
     typeof project.id === 'string' &&
-    typeof project.title === 'string' &&
-    project.title.trim().length > 0 &&
-    typeof project.description === 'string'
+    typeof project.title === 'string'
   );
 }
 

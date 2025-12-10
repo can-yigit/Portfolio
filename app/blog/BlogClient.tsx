@@ -22,28 +22,17 @@ interface BlogClientProps {
 export default function BlogClient({ posts, categories }: BlogClientProps) {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
-  const validPosts = useMemo(() => {
-    return posts.filter(post => 
-      post.id &&
-      post.slug &&
-      post.slug.trim().length > 0 &&
-      post.title &&
-      post.title.trim().length > 0 &&
-      typeof post.excerpt === 'string' &&
-      post.created_at &&
-      post.authors &&
-      post.authors.length > 0
-    );
-  }, [posts]);
-
   const filteredPosts = useMemo(() => {
-    if (!selectedCategoryId) {
-      return validPosts;
+    let filtered = posts;
+    
+    if (selectedCategoryId) {
+      filtered = filtered.filter(post => 
+        post.categories?.some(cat => cat.id === selectedCategoryId)
+      );
     }
-    return validPosts.filter(post => 
-      post.categories?.some(cat => cat.id === selectedCategoryId)
-    );
-  }, [validPosts, selectedCategoryId]);
+    
+    return filtered;
+  }, [posts, selectedCategoryId]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
