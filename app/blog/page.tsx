@@ -4,7 +4,7 @@ import { getBlogPosts, getCategories } from "@/lib/api";
 import BlogClient from "./BlogClient";
 import "@/styles/blog/blog-list.scss";
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
   const [allPosts, categories] = await Promise.all([

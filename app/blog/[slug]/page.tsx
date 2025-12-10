@@ -7,14 +7,7 @@ import { getBlogPostBySlug, getAllBlogSlugs, getBlogPosts } from "@/lib/api";
 import ShareButton from "../../components/ShareButton";
 import "@/styles/blog/blog-detail.scss";
 
-export async function generateStaticParams() {
-  const slugs = await getAllBlogSlugs();
-  return slugs.map((slug) => ({
-    slug: slug,
-  }));
-}
-
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
