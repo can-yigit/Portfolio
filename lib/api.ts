@@ -38,6 +38,13 @@ export interface BlogAuthor {
   avatar?: string;
 }
 
+export interface BlogCategory {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface BlogPost {
   id: number;
   slug: string;
@@ -45,17 +52,30 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   image: string | null;
-  category: string;
+  categories: BlogCategory[];
   pinned: boolean;
   authors: BlogAuthor[];
   created_at: string;
   updated_at: string;
 }
 
-export async function getBlogPosts(category?: string): Promise<BlogPost[]> {
+export async function getCategories(): Promise<BlogCategory[]> {
   try {
-    const url = category && category !== 'Overview' 
-      ? `${API_BASE_URL}/blogs?category=${encodeURIComponent(category)}`
+    const response = await fetch(`${API_BASE_URL}/categories`, fetchOptions);
+    if (!response.ok) {
+      throw new Error('Failed to fetch categories');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
+export async function getBlogPosts(categoryId?: string): Promise<BlogPost[]> {
+  try {
+    const url = categoryId 
+      ? `${API_BASE_URL}/blogs?category_id=${encodeURIComponent(categoryId)}`
       : `${API_BASE_URL}/blogs`;
     
     const response = await fetch(url, fetchOptions);

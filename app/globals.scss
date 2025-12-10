@@ -96,8 +96,8 @@
     transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-meteor: meteor 5s linear infinite
-;
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-gradient: gradient 8s linear infinite;
   @keyframes meteor {
   0% {
     transform: rotate(var(--angle)) translateX(0);
@@ -2099,6 +2099,12 @@ body > * {
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.2); }
+}
+
+@keyframes gradient {
+  to {
+    background-position: var(--bg-size) 0;
+  }
 }
 
 /* Footer Responsive */

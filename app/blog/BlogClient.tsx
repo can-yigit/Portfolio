@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { PinIcon, ClockIcon } from "lucide-react";
-import type { BlogPost } from "@/lib/api";
+import { PinIcon, ClockIcon, TagIcon } from "lucide-react";
+import type { BlogPost, BlogCategory } from "@/lib/api";
 import AuthorStack from "./components/AuthorStack";
 import "@/styles/blog/blog-list.scss";
 
@@ -16,11 +16,11 @@ const isValidImageUrl = (url: string) => {
 
 interface BlogClientProps {
   posts: BlogPost[];
-  categories: string[];
+  categories: BlogCategory[];
 }
 
 export default function BlogClient({ posts, categories }: BlogClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState("Overview");
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
   const validPosts = useMemo(() => {
     return posts.filter(post => 
@@ -37,15 +37,13 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    if (selectedCategory === "Overview") {
+    if (!selectedCategoryId) {
       return validPosts;
     }
-    return validPosts.filter(post => {
-      const postCategory = post.category?.trim() || "";
-      const selectedCat = selectedCategory.trim();
-      return postCategory.toLowerCase() === selectedCat.toLowerCase();
-    });
-  }, [validPosts, selectedCategory]);
+    return validPosts.filter(post => 
+      post.categories?.some(cat => cat.id === selectedCategoryId)
+    );
+  }, [validPosts, selectedCategoryId]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -58,15 +56,21 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
   return (
     <>
       <div className="blog-tabs">
+        <button
+          onClick={() => setSelectedCategoryId(null)}
+          className={`blog-tabs__item ${!selectedCategoryId ? 'blog-tabs__item--active' : ''}`}
+        >
+          Overview
+        </button>
         {categories.map((category) => (
           <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
+            key={category.id}
+            onClick={() => setSelectedCategoryId(category.id)}
             className={`blog-tabs__item ${
-              selectedCategory === category ? 'blog-tabs__item--active' : ''
+              selectedCategoryId === category.id ? 'blog-tabs__item--active' : ''
             }`}
           >
-            {category}
+            {category.name}
           </button>
         ))}
       </div>
@@ -97,9 +101,16 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
                     
                     <div className="blog-post__content">
                       <div className="blog-post__meta">
-                        {post.category && (
+                        {post.categories && post.categories.length > 0 && (
                           <>
-                            <span className="blog-post__category">{post.category}</span>
+                            <div className="blog-post__categories">
+                              {post.categories.map((cat) => (
+                                <span key={cat.id} className="blog-post__category">
+                                  <TagIcon size={10} />
+                                  {cat.name}
+                                </span>
+                              ))}
+                            </div>
                             <span className="blog-post__dot" />
                           </>
                         )}

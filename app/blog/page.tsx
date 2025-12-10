@@ -1,15 +1,16 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { getBlogPosts } from "@/lib/api";
+import { getBlogPosts, getCategories } from "@/lib/api";
 import BlogClient from "./BlogClient";
 import "@/styles/blog/blog-list.scss";
-
-const categories = ["Overview", "Engineering", "Education"];
 
 export const revalidate = 300;
 
 export default async function BlogPage() {
-  const allPosts = await getBlogPosts();
+  const [allPosts, categories] = await Promise.all([
+    getBlogPosts(),
+    getCategories()
+  ]);
 
   return (
     <>
