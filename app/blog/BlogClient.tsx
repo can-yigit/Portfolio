@@ -64,7 +64,7 @@ export default function BlogClient({ posts, categories }: BlogClientProps) {
         ))}
       </div>
 
-      <div className="blog-container">
+      <div>
         {filteredPosts.length > 0 ? (
           <div className="blog-posts">
             {filteredPosts.map((post) => {

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getBlogPostBySlug, getAllBlogSlugs, getBlogPosts } from "@/lib/api";
@@ -37,7 +36,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
-      <Header />
       <main className="blog-article">
         <nav className="blog-article-nav">
           <div className="blog-article-nav__container">

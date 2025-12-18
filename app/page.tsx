@@ -365,6 +365,137 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Experience Section */}
+        <section className={styles.experienceSection}>
+          <h2 className={styles.sectionTitle}>Experience</h2>
+          <div className={styles.timeline}>
+            <div className={styles.timelineItem}>
+              <div className={styles.timelineDot} />
+              <div className={styles.timelineContent}>
+                <div className={styles.timelineHeader}>
+                  <span className={styles.timelineTitle}>Full Stack Developer</span>
+                  <span className={styles.timelineDate}>2023 - Present</span>
+                </div>
+                <span className={styles.timelineCompany}>Freelance</span>
+                <p className={styles.timelineDescription}>
+                  Building modern web applications with React, Next.js, and TypeScript. 
+                  Focused on creating performant and accessible user interfaces.
+                </p>
+              </div>
+            </div>
+            <div className={styles.timelineItem}>
+              <div className={styles.timelineDot} />
+              <div className={styles.timelineContent}>
+                <div className={styles.timelineHeader}>
+                  <span className={styles.timelineTitle}>Frontend Developer</span>
+                  <span className={styles.timelineDate}>2021 - 2023</span>
+                </div>
+                <span className={styles.timelineCompany}>Tech Agency</span>
+                <p className={styles.timelineDescription}>
+                  Developed responsive web applications and collaborated with design teams 
+                  to implement pixel-perfect UIs.
+                </p>
+              </div>
+            </div>
+            <div className={styles.timelineItem}>
+              <div className={styles.timelineDot} />
+              <div className={styles.timelineContent}>
+                <div className={styles.timelineHeader}>
+                  <span className={styles.timelineTitle}>Junior Developer</span>
+                  <span className={styles.timelineDate}>2019 - 2021</span>
+                </div>
+                <span className={styles.timelineCompany}>Startup</span>
+                <p className={styles.timelineDescription}>
+                  Started my journey as a developer, learning the fundamentals of web 
+                  development and working on various client projects.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Currently Section */}
+        <section className={styles.currentlySection}>
+          <h2 className={styles.sectionTitle}>Currently</h2>
+          <div className={styles.currentlyGrid}>
+            <div className={styles.currentlyCard}>
+              <div className={styles.currentlyIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              </div>
+              <div className={styles.currentlyContent}>
+                <span className={styles.currentlyLabel}>Learning</span>
+                <span className={styles.currentlyValue}>Rust & WebAssembly</span>
+              </div>
+            </div>
+            <div className={styles.currentlyCard}>
+              <div className={styles.currentlyIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div className={styles.currentlyContent}>
+                <span className={styles.currentlyLabel}>Working on</span>
+                <span className={styles.currentlyValue}>Open Source Projects</span>
+              </div>
+            </div>
+            <div className={styles.currentlyCard}>
+              <div className={styles.currentlyIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18V5l12-2v13"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <circle cx="18" cy="16" r="3"/>
+                </svg>
+              </div>
+              <div className={styles.currentlyContent}>
+                <span className={styles.currentlyLabel}>Listening to</span>
+                <span className={styles.currentlyValue}>Lo-Fi Beats</span>
+              </div>
+            </div>
+            <div className={styles.currentlyCard}>
+              <div className={styles.currentlyIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+              </div>
+              <div className={styles.currentlyContent}>
+                <span className={styles.currentlyLabel}>Watching</span>
+                <span className={styles.currentlyValue}>Tech Conferences</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact CTA Section */}
+        <section className={styles.ctaSection}>
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>Let&apos;s work together</h2>
+            <p className={styles.ctaDescription}>
+              Have a project in mind? I&apos;m always open to discussing new opportunities 
+              and creative ideas.
+            </p>
+            <div className={styles.ctaButtons}>
+              <a href="mailto:info@canyigit.com" className={styles.ctaButtonPrimary}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Get in touch
+              </a>
+              <a href="/projects" className={styles.ctaButtonSecondary}>
+                View my work
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
