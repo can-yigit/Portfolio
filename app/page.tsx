@@ -229,12 +229,12 @@ export default function HomePage() {
               {[...Array(2)].map((_, i) => (
                 <div key={i} className={styles.testimonialCards}>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Great work on the portfolio, really clean design!</p>
+                    <p className={styles.testimonialText}>Das Design sieht richtig professionell aus!</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=1" alt="John Doe" width={32} height={32} className={styles.testimonialAvatar} />
+                      <Image src="https://avatars.githubusercontent.com/u/159561025?v=4" alt="Wim Wenigerkind" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>John Doe</span>
-                        <span className={styles.testimonialRole}>CEO @TechCorp</span>
+                        <span className={styles.testimonialName}>Wim Wenigerkind</span>
+                        <span className={styles.testimonialRole}>Software Engineer</span>
                       </div>
                     </div>
                   </div>
