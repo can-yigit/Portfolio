@@ -47,8 +47,8 @@ export function Badge({ type, className = "" }: BadgeProps) {
     <div
       className="badge-icon"
       style={{
-        width: "22px",
-        height: "22px",
+        width: "18px",
+        height: "18px",
         color: config.color,
         display: "flex",
         alignItems: "center",
