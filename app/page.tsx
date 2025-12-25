@@ -3,9 +3,11 @@ import { WordRotate } from "@/components/ui/word-rotate";
 import { Badge } from "@/components/ui/badge";
 import Spotify from "@/components/widget/spotify";
 import LocalTime from "@/components/widget/local-time";
+import { getTechStack } from "@/lib/api";
 import styles from "./page.module.scss";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const techStack = await getTechStack();
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -290,42 +292,52 @@ export default function HomePage() {
         <section className={styles.stackSection}>
           <h2 className={styles.sectionTitle}>Stack</h2>
           <div className={styles.stackGrid}>
-            <div className={styles.stackItem} title="TypeScript">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" />
-            </div>
-            <div className={styles.stackItem} title="JavaScript">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-            </div>
-            <div className={styles.stackItem} title="React">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
-            </div>
-            <div className={styles.stackItem} title="Next.js">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
-            </div>
-            <div className={styles.stackItem} title="Node.js">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
-            </div>
-            <div className={styles.stackItem} title="Tailwind CSS">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" />
-            </div>
-            <div className={styles.stackItem} title="PostgreSQL">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
-            </div>
-            <div className={styles.stackItem} title="MongoDB">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-            </div>
-            <div className={styles.stackItem} title="Docker">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
-            </div>
-            <div className={styles.stackItem} title="Git">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-            </div>
-            <div className={styles.stackItem} title="Figma">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
-            </div>
-            <div className={styles.stackItem} title="Python">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-            </div>
+            {techStack.length > 0 ? (
+              techStack.map((tech) => (
+                <div key={tech.id} className={styles.stackItem} title={tech.name}>
+                  <img src={tech.icon} alt={tech.name} />
+                </div>
+              ))
+            ) : (
+              <>
+                <div className={styles.stackItem} title="TypeScript">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" />
+                </div>
+                <div className={styles.stackItem} title="JavaScript">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+                </div>
+                <div className={styles.stackItem} title="React">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+                </div>
+                <div className={styles.stackItem} title="Next.js">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
+                </div>
+                <div className={styles.stackItem} title="Node.js">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+                </div>
+                <div className={styles.stackItem} title="Tailwind CSS">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" />
+                </div>
+                <div className={styles.stackItem} title="PostgreSQL">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+                </div>
+                <div className={styles.stackItem} title="MongoDB">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+                </div>
+                <div className={styles.stackItem} title="Docker">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+                </div>
+                <div className={styles.stackItem} title="Git">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+                </div>
+                <div className={styles.stackItem} title="Figma">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+                </div>
+                <div className={styles.stackItem} title="Python">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                </div>
+              </>
+            )}
           </div>
         </section>
 
