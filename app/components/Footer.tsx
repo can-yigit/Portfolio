@@ -13,12 +13,6 @@ const socialLinks = [
   { icon: MailIcon, href: "mailto:can@yigit.dev", label: "Email" },
 ];
 
-const navLinks = [
-  { name: "Work", href: "#portfolio" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-];
-
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const bigTextRef = useRef<HTMLDivElement>(null);
@@ -80,7 +74,7 @@ export default function Footer() {
       <footer ref={footerRef} className="border-t border-neutral-200 -mt-1 relative z-10 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-12">
           {/* Top Section */}
-          <div className="footer-content grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="footer-content grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Brand */}
             <div className="space-y-4">
               <a href="/" className="inline-block">
@@ -93,20 +87,6 @@ export default function Footer() {
               <p className="text-neutral-500 text-sm max-w-xs">
                 Turning ideas into elegant digital experiences. Based in Bremen, available worldwide.
               </p>
-            </div>
-
-            {/* Navigation */}
-            <div className="flex flex-col gap-3">
-              <span className="text-xs text-neutral-400 uppercase tracking-wider mb-1">Navigation</span>
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
-                  className="footer-link text-neutral-600 hover:text-neutral-900 transition-colors text-sm w-fit"
-                >
-                  {link.name}
-                </a>
-              ))}
             </div>
 
             {/* Social */}

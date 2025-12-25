@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Footer from "../../components/Footer";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { getBlogPostBySlug, getAllBlogSlugs, getBlogPosts } from "@/lib/api";
 import ShareButton from "../../components/ShareButton";
@@ -142,7 +141,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </nav>
       </main>
-      <Footer />
     </>
   );
 }

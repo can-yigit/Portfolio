@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const navItems = [
   { label: "Portfolio", href: "/" },
@@ -14,13 +13,9 @@ export default function PageHeader() {
         <nav className="flex items-center justify-between px-4 py-2.5 rounded-full bg-transparent">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image
-              src="/CYLogo.png"
-              alt="Can Yigit"
-              width={28}
-              height={28}
-              className="invert"
-            />
+            <span className="text-lg font-bold text-neutral-900 tracking-tight">
+              CY
+            </span>
           </Link>
 
           {/* Navigation */}

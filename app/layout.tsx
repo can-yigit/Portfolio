@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import PageHeader from "@/components/widget/page-header";
+import Footer from "./components/Footer";
 import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <PageHeader />
         {children}
+        <Footer />
       </body>
     </html>
   );

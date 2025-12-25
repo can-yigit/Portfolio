@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { WordRotate } from "@/components/ui/word-rotate";
+import { Badge } from "@/components/ui/badge";
 import Spotify from "@/components/widget/spotify";
 import LocalTime from "@/components/widget/local-time";
 import styles from "./page.module.scss";
@@ -18,16 +19,19 @@ export default function HomePage() {
             className={styles.profileImage}
           />
           <div className={styles.heroInfo}>
-            <span className={styles.classNames}>text-3xl font-bold tracking-tight</span>
             <div className={styles.nameRow}>
               <span className={styles.name}>Can Yigit</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-4.5 text-blue-400 select-none" aria-label="Verified"><path fill="currentColor" d="M24 12a4.454 4.454 0 0 0-2.564-3.91 4.437 4.437 0 0 0-.948-4.578 4.436 4.436 0 0 0-4.577-.948A4.44 4.44 0 0 0 12 0a4.423 4.423 0 0 0-3.9 2.564 4.434 4.434 0 0 0-2.43-.178 4.425 4.425 0 0 0-2.158 1.126 4.42 4.42 0 0 0-1.12 2.156 4.42 4.42 0 0 0 .183 2.421A4.456 4.456 0 0 0 0 12a4.465 4.465 0 0 0 2.576 3.91 4.433 4.433 0 0 0 .936 4.577 4.459 4.459 0 0 0 4.577.95A4.454 4.454 0 0 0 12 24a4.439 4.439 0 0 0 3.91-2.563 4.26 4.26 0 0 0 5.526-5.526A4.453 4.453 0 0 0 24 12Zm-13.709 4.917-4.38-4.378 1.652-1.663 2.646 2.646L15.83 7.4l1.72 1.591-7.258 7.926Z"></path></svg>
+              <div className={styles.badgeContainer}>
+                <Badge type="verified" />
+                <Badge type="twitter" />
+                <Badge type="discord" />
+              </div>
             </div>
             <WordRotate 
               words={[
-                "Software Developer",
-                "Creating with code",
-                "Clean code enthusiast"
+                "IT Specialist in Training",
+                "Full-Stack Developer",
+                "Shopware Enthusiast"
               ]} 
               className={styles.tagline}
               duration={3000}
@@ -80,16 +84,6 @@ export default function HomePage() {
             <div className={styles.infoItem}>
               <div className={styles.infoIconWrapper}>
                 <svg className={styles.infoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-              </div>
-              <span>canyigit.com</span>
-            </div>
-            <div className={styles.infoItem}>
-              <div className={styles.infoIconWrapper}>
-                <svg className={styles.infoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                   <circle cx="12" cy="7" r="4"/>
                 </svg>
@@ -102,7 +96,7 @@ export default function HomePage() {
         {/* Links Section */}
         <section className={styles.linksSection}>
           <div className={styles.linksGrid}>
-            <a href="https://github.com/canyigit" target="_blank" rel="noopener noreferrer" className={styles.linkCard}>
+            <a href="https://github.com/can-yigit" target="_blank" rel="noopener noreferrer" className={styles.linkCard}>
               <div className={styles.linkIconWrapper}>
                 <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -110,7 +104,7 @@ export default function HomePage() {
               </div>
               <div className={styles.linkContent}>
                 <span className={styles.linkTitle}>GitHub</span>
-                <span className={styles.linkHandle}>canyigit</span>
+                <span className={styles.linkHandle}>can-yigit</span>
               </div>
               <svg className={styles.linkArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -127,22 +121,6 @@ export default function HomePage() {
               <div className={styles.linkContent}>
                 <span className={styles.linkTitle}>LinkedIn</span>
                 <span className={styles.linkHandle}>canyigit</span>
-              </div>
-              <svg className={styles.linkArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"/>
-                <polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
-
-            <a href="https://twitter.com/canyigit" target="_blank" rel="noopener noreferrer" className={styles.linkCard}>
-              <div className={styles.linkIconWrapper}>
-                <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </div>
-              <div className={styles.linkContent}>
-                <span className={styles.linkTitle}>X (Twitter)</span>
-                <span className={styles.linkHandle}>@canyigit</span>
               </div>
               <svg className={styles.linkArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"/>
@@ -167,40 +145,32 @@ export default function HomePage() {
               </svg>
             </a>
 
-            <a href="/projects" className={styles.linkCard}>
-              <div className={styles.linkIconWrapper}>
-                <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                  <line x1="12" y1="22.08" x2="12" y2="12"/>
-                </svg>
-              </div>
-              <div className={styles.linkContent}>
-                <span className={styles.linkTitle}>Portfolio</span>
-                <span className={styles.linkHandle}>View Projects</span>
-              </div>
-              <svg className={styles.linkArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"/>
-                <polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
-
-            <a href="/blog" className={styles.linkCard}>
-              <div className={styles.linkIconWrapper}>
-                <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                </svg>
-              </div>
-              <div className={styles.linkContent}>
-                <span className={styles.linkTitle}>Blog</span>
-                <span className={styles.linkHandle}>Read Articles</span>
-              </div>
-              <svg className={styles.linkArrow} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"/>
-                <polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
+            <div className={styles.linkCardSplit}>
+              <a href="/projects" className={styles.linkCardHalf}>
+                <div className={styles.linkIconWrapperSmall}>
+                  <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                </div>
+                <div className={styles.linkContent}>
+                  <span className={styles.linkTitle}>Portfolio</span>
+                </div>
+              </a>
+              <div className={styles.linkCardDivider}></div>
+              <a href="/blog" className={styles.linkCardHalf}>
+                <div className={styles.linkIconWrapperSmall}>
+                  <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                  </svg>
+                </div>
+                <div className={styles.linkContent}>
+                  <span className={styles.linkTitle}>Blog</span>
+                </div>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -209,14 +179,14 @@ export default function HomePage() {
           <h2 className={styles.sectionTitle}>About</h2>
           <div className={styles.aboutContent}>
             <p>
-              Design Engineer with 5+ years of experience, known for pixel-perfect execution and 
-              smooth interactions. I specialize in building modern web applications with React, 
-              Next.js, and TypeScript.
+              IT Specialist for Application Development in training, passionate about building 
+              modern web applications with React, Next.js, and TypeScript. Currently completing 
+              my apprenticeship at HEPTACOM, where I work on E-Commerce solutions and Shopware systems.
             </p>
             <p>
-              Currently focused on creating beautiful, performant user interfaces and 
-              contributing to open source projects. I believe in clean code, attention to detail, 
-              and continuous learning.
+              I focus on creating clean, scalable code and continuously expanding my knowledge in 
+              Full-Stack development. I believe in clean code, attention to detail, and the 
+              importance of continuous learning in the ever-evolving tech landscape.
             </p>
           </div>
         </section>
@@ -239,32 +209,29 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Amazing developer, delivered beyond expectations!</p>
+                    <p className={styles.testimonialText}>It&apos;s really fun working with you!</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=2" alt="Jane Smith" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Jane Smith</span>
-                        <span className={styles.testimonialRole}>CTO @StartupXYZ</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Colleague</span>
                       </div>
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Incredible attention to detail, highly recommend!</p>
+                    <p className={styles.testimonialText}>You really helped me with that project, thanks!</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=3" alt="Mike Johnson" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Mike Johnson</span>
-                        <span className={styles.testimonialRole}>Designer @Agency</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Team Member</span>
                       </div>
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>One of the best developers I&apos;ve worked with!</p>
+                    <p className={styles.testimonialText}>Your code quality is really strong for an apprentice.</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=4" alt="Sarah Williams" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Sarah Williams</span>
-                        <span className={styles.testimonialRole}>PM @BigTech</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Mentor</span>
                       </div>
                     </div>
                   </div>
@@ -278,42 +245,38 @@ export default function HomePage() {
               {[...Array(2)].map((_, i) => (
                 <div key={i} className={styles.testimonialCards}>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Professional and efficient, great communication!</p>
+                    <p className={styles.testimonialText}>You learn quickly and implement things right away.</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=5" alt="Alex Chen" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Alex Chen</span>
-                        <span className={styles.testimonialRole}>Founder @Startup</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Trainer</span>
                       </div>
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Love the components, especially the animations!</p>
+                    <p className={styles.testimonialText}>Great collaboration, would work together again!</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=6" alt="Emma Brown" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Emma Brown</span>
-                        <span className={styles.testimonialRole}>Designer @Studio</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Project Partner</span>
                       </div>
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Clean code and pixel-perfect execution!</p>
+                    <p className={styles.testimonialText}>You ask when you don&apos;t understand something, I really appreciate that.</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=7" alt="David Lee" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>David Lee</span>
-                        <span className={styles.testimonialRole}>Tech Lead @Corp</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Senior Developer</span>
                       </div>
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>Highly skilled, would definitely work with again!</p>
+                    <p className={styles.testimonialText}>Your initiative is really impressive.</p>
                     <div className={styles.testimonialAuthor}>
-                      <Image src="https://i.pravatar.cc/100?img=8" alt="Lisa Wang" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Lisa Wang</span>
-                        <span className={styles.testimonialRole}>CEO @Agency</span>
+                        <span className={styles.testimonialName}>Anonymous</span>
+                        <span className={styles.testimonialRole}>Team Lead</span>
                       </div>
                     </div>
                   </div>
@@ -374,101 +337,21 @@ export default function HomePage() {
               <div className={styles.timelineDot} />
               <div className={styles.timelineContent}>
                 <div className={styles.timelineHeader}>
-                  <span className={styles.timelineTitle}>Full Stack Developer</span>
-                  <span className={styles.timelineDate}>2023 - Present</span>
+                  <span className={styles.timelineTitle}>IT Specialist for Application Development (Apprenticeship)</span>
+                  <span className={styles.timelineDate}>08/2023 - 01/2026</span>
                 </div>
-                <span className={styles.timelineCompany}>Freelance</span>
+                <span className={styles.timelineCompany}>HEPTACOM | Experts in Shopware</span>
                 <p className={styles.timelineDescription}>
-                  Building modern web applications with React, Next.js, and TypeScript. 
-                  Focused on creating performant and accessible user interfaces.
-                </p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot} />
-              <div className={styles.timelineContent}>
-                <div className={styles.timelineHeader}>
-                  <span className={styles.timelineTitle}>Frontend Developer</span>
-                  <span className={styles.timelineDate}>2021 - 2023</span>
-                </div>
-                <span className={styles.timelineCompany}>Tech Agency</span>
-                <p className={styles.timelineDescription}>
-                  Developed responsive web applications and collaborated with design teams 
-                  to implement pixel-perfect UIs.
-                </p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot} />
-              <div className={styles.timelineContent}>
-                <div className={styles.timelineHeader}>
-                  <span className={styles.timelineTitle}>Junior Developer</span>
-                  <span className={styles.timelineDate}>2019 - 2021</span>
-                </div>
-                <span className={styles.timelineCompany}>Startup</span>
-                <p className={styles.timelineDescription}>
-                  Started my journey as a developer, learning the fundamentals of web 
-                  development and working on various client projects.
+                  Apprenticeship as IT Specialist for Application Development with focus on Full-Stack development and Shopware. 
+                  Contributing to E-Commerce solutions and interfaces for Shopware systems. 
+                  Implementing individual customer requirements into scalable software solutions. 
+                  Analysis, conception and documentation of software projects.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Currently Section */}
-        <section className={styles.currentlySection}>
-          <h2 className={styles.sectionTitle}>Currently</h2>
-          <div className={styles.currentlyGrid}>
-            <div className={styles.currentlyCard}>
-              <div className={styles.currentlyIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                </svg>
-              </div>
-              <div className={styles.currentlyContent}>
-                <span className={styles.currentlyLabel}>Learning</span>
-                <span className={styles.currentlyValue}>Rust & WebAssembly</span>
-              </div>
-            </div>
-            <div className={styles.currentlyCard}>
-              <div className={styles.currentlyIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-              </div>
-              <div className={styles.currentlyContent}>
-                <span className={styles.currentlyLabel}>Working on</span>
-                <span className={styles.currentlyValue}>Open Source Projects</span>
-              </div>
-            </div>
-            <div className={styles.currentlyCard}>
-              <div className={styles.currentlyIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18V5l12-2v13"/>
-                  <circle cx="6" cy="18" r="3"/>
-                  <circle cx="18" cy="16" r="3"/>
-                </svg>
-              </div>
-              <div className={styles.currentlyContent}>
-                <span className={styles.currentlyLabel}>Listening to</span>
-                <span className={styles.currentlyValue}>Lo-Fi Beats</span>
-              </div>
-            </div>
-            <div className={styles.currentlyCard}>
-              <div className={styles.currentlyIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polygon points="10 8 16 12 10 16 10 8"/>
-                </svg>
-              </div>
-              <div className={styles.currentlyContent}>
-                <span className={styles.currentlyLabel}>Watching</span>
-                <span className={styles.currentlyValue}>Tech Conferences</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Contact CTA Section */}
         <section className={styles.ctaSection}>
