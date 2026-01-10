@@ -211,11 +211,12 @@ export default async function HomePage() {
                     </div>
                   </div>
                   <div className={styles.testimonialCard}>
-                    <p className={styles.testimonialText}>It&apos;s really fun working with you!</p>
+                    <p className={styles.testimonialText}>Das Design sieht richtig clean aus!</p>
                     <div className={styles.testimonialAuthor}>
+                    <Image src="https://cdn.discordapp.com/avatars/274315305537503232/d90729f6ed8369c8097659fe7373cc0f.png" alt="Anonymous" width={32} height={32} className={styles.testimonialAvatar} />
                       <div>
-                        <span className={styles.testimonialName}>Anonymous</span>
-                        <span className={styles.testimonialRole}>Colleague</span>
+                        <span className={styles.testimonialName}>Manu</span>
+                        <span className={styles.testimonialRole}>Software Engineer</span>
                       </div>
                     </div>
                   </div>
